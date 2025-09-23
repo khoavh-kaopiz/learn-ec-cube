@@ -28,3 +28,7 @@ admin_logout:
     path: '/%eccube_admin_route%/logout'
 logout:
     path: /logout
+product_board:
+  path: /product-board
+  controller: Customize\Controller\ProductBoardController::index
+  methods: [GET]

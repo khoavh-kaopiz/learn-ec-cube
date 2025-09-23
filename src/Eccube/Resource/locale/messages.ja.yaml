@@ -149,7 +149,7 @@ front.block.calendar.thursday: "木"
 front.block.calendar.friday: "金"
 front.block.calendar.saturday: "土"
 front.block.calendar.holiday_notice: "* 赤字は休業日です。"
-
+front.block.login.product_list: Product List
 #------------------------------------------------------------------------------------
 # 問い合わせ
 #------------------------------------------------------------------------------------

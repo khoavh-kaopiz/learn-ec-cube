@@ -1,0 +1,46 @@
+{% extends 'default_frame.twig' %}
+
+{% block main %}
+	<div class="ec-role">
+		<div class="ec-secHeading">
+			<span class="ec-secHeading__en">PRODUCT BOARD</span>
+			<span class="ec-secHeading__line"></span>
+			<span class="ec-secHeading__ja">商品一覧（カスタム）</span>
+		</div>
+
+		<div class="ec-grid">
+			{% if products is empty %}
+				<p>Chưa có sản phẩm.</p>
+			{% else %}
+				<div class="ec-grid2">
+					{% for Product in products %}
+						<div class="ec-grid2__item ec-card">
+							<a href="{{ url('product_detail', {'id': Product.id}) }}">
+								{% set MainImage = Product.MainListImage %}
+								<img src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}" alt="{{ Product.name }}" {% if loop.index > 5 %} loading="lazy" {% endif %}>
+								<div class="ec-card__body">
+									<h3 class="ec-card__title">{{ Product.name }}</h3>
+									{% set pc = Product.ProductClasses|first %}
+									{% if pc and pc.price02 %}
+										<div class="ec-card__price">{{ pc.price02|price }}</div>
+									{% endif %}
+								</div>
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="ec-pager">
+			{% if page > 1 %}
+				<a class="ec-pager__prev" href="{{ path('product_board', {'page': page - 1}) }}">&laquo; Prev</a>
+			{% endif %}
+			<span class="ec-pager__current">Page
+				{{ page }}</span>
+			{% if products|length >= limit %}
+				<a class="ec-pager__next" href="{{ path('product_board', {'page': page + 1}) }}">Next &raquo;</a>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
