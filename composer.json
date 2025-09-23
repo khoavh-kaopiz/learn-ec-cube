@@ -54,7 +54,7 @@
         "sensio/framework-extra-bundle": "^6.2",
         "setasign/fpdi": "^2.2",
         "skorp/detect-incompatible-samesite-useragents": "^1.0",
-        "softcreatr/jsonpath": "^0.8",
+        "softcreatr/jsonpath": "^0.10",
         "symfony/asset": "^6.4",
         "symfony/cache": "^6.4",
         "symfony/config": "^6.4",
