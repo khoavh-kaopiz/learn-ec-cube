@@ -240,7 +240,8 @@ class PageController extends AbstractController
             $url = '';
         } else {
             $templatePath = $this->getParameter('eccube_theme_front_dir');
-            $url = $router->getRouteCollection()->get($PrevPage->getUrl())->getPath();
+            $route = $router->getRouteCollection()->get($PrevPage->getUrl());
+            $url = $route ? $route->getPath() : '';
         }
         $projectDir = $this->getParameter('kernel.project_dir');
         $templatePath = str_replace($projectDir.'/', '', $templatePath);

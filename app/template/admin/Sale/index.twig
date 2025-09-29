@@ -1,0 +1,93 @@
+{% extends '@admin/default_frame.twig' %}
+
+{% set menus = ['sale', 'sale'] %}
+
+
+{% block title %}{{ 'admin.sale.list.title'|trans }}{% endblock %}
+{% block sub_title %}{{ 'admin.sale.list.sub_title'|trans }}{% endblock %}
+
+{% block main %}
+    <div class="c-contentsArea__cols">
+        <div class="c-contentsArea__primaryCol">
+            <div class="c-primaryCol">
+                <div class="card rounded border-0 mb-4">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-inline-block" data-tooltip="true" data-placement="top" title="{{ 'admin.sale.create.tooltip'|trans }}">
+                                    <a class="btn btn-ec-regular" href="{{ path('admin_sale_new') }}">
+                                        <i class="fa fa-plus-square-o mr-1"></i>
+                                        <span>{{ 'admin.common.create__new'|trans }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0 pt-2 pb-2 pl-3">{{ 'admin.common.id'|trans }}</th>
+                                    <th class="border-top-0 pt-2 pb-2">{{ 'admin.sale.label.title'|trans }}</th>
+                                    <th class="border-top-0 pt-2 pb-2">{{ 'admin.sale.label.discount_type'|trans }}</th>
+                                    <th class="border-top-0 pt-2 pb-2">{{ 'admin.sale.label.discount_amount'|trans }}</th>
+                                    <th class="border-top-0 pt-2 pb-2">{{ 'admin.sale.label.period'|trans }}</th>
+                                    <th class="border-top-0 pt-2 pb-2"></th>
+                                    <th class="border-top-0 pt-2 pb-2 pr-3"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for Sale in Sales %}
+                                <tr id="ex-sale-{{ Sale.id }}">
+                                    <td class="align-middle pl-3">{{ Sale.id }}</td>
+                                    <td class="align-middle">{{ Sale.title }}</td>
+                                    <td class="align-middle">
+                                        {% if Sale.discount_type == 2 %}
+                                            {{ 'admin.sale.choice.discount_type.percent'|trans }}
+                                        {% else %}
+                                            {{ 'admin.sale.choice.discount_type.money'|trans }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="align-middle">
+                                        {% if Sale.discount_type == 1 %}
+                                            {{ Sale.discount_amount }}%
+                                        {% else %}
+                                            {{ Sale.discount_amount|price }}
+                                        {% endif %}
+                                    </td>
+                                    <td class="align-middle">{{ Sale.from_date|date_day }} ~ {{ Sale.to_date|date_day }}</td>
+                                    <td class="align-middle">
+                                        {% if Sale.visible %}
+                                            <span class="badge badge-info">{{ 'admin.sale.choice.visible.yes'|trans }}</span>
+                                        {% else %}
+                                            <span class="badge badge-secondary">{{ 'admin.sale.choice.visible.no'|trans }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="align-middle pr-3">
+                                        <div class="row justify-content-end">
+                                            <div class="col-auto text-center">
+                                                <a class="btn btn-ec-actionIcon mr-2" href="{{ path('admin_sale_edit', {'id': Sale.id}) }}" data-toggle="tooltip" data-placement="top" title="Sửa">
+                                                    <i class="fa fa-pencil fa-lg text-secondary"></i>
+                                                </a>
+                                                <a class="btn btn-ec-actionIcon mr-2" href="{{ path('admin_sale_delete', {'id': Sale.id}) }}" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                                    <i class="fa fa-close fa-lg text-secondary"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center py-4">
+                                        {{ 'admin.common.search_no_result'|trans }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

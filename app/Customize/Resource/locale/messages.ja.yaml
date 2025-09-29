@@ -1,0 +1,56 @@
+admin:
+  common:
+    create:
+      complete: 登録が完了しました。
+    save:
+      complete: 保存が完了しました。
+    delete:
+      complete: 削除が完了しました。
+      error: 削除中にエラーが発生しました。
+  sale:
+    label:
+      discount_type: 割引タイプ
+      discount_amount: 割引額
+      period: 期間
+      visible: 表示
+      title: セールタイトル
+      description: 説明
+    choice:
+      discount_type:
+        money: 金額割引
+        percent: パーセント割引
+      visible:
+        yes: 表示
+        no: 非表示
+    list:
+      title: セール一覧
+      sub_title: セール管理
+    create:
+      title: セール登録
+      sub_title: セール管理
+      tooltip: セール情報を登録します。
+      header: セール情報
+    edit:
+      title: セール編集
+      sub_title: セール管理
+      tooltip: セール情報を編集します。
+      header: セール情報
+    delete:
+      title: セール削除
+      sub_title: セール管理
+      tooltip: セール情報を削除します。
+      header: セール情報
+      confirm_message: セール「%name%」を削除してもよろしいですか？
+    title:
+      tooltip: セールのタイトルを設定します。
+      placeholder: セールタイトルを入力
+    description:
+      tooltip: セールの説明を設定します。
+    discount_type:
+      tooltip: 割引タイプを選択してください。
+    discount_amount:
+      tooltip: 割引額または割引率を入力してください。
+    period:
+      tooltip: セールの開始日と終了日を設定します。
+    visible:
+      tooltip: セールの表示/非表示を設定します。

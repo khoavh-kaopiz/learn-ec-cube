@@ -1,0 +1,45 @@
+{% extends 'default_frame.twig' %}
+
+{% set body_class = 'sale_list_page' %}
+
+{% block main %}
+    <div class="ec-role">
+        <div class="ec-pageHeader">
+            <h1>{{ 'Sale List'|trans }}</h1>
+        </div>
+        <div class="ec-salePage">
+            {% if Sales|length > 0 %}
+                <div class="ec-saleList">
+                    {% for Sale in Sales %}
+                        <div class="ec-saleRole">
+                            <div class="ec-saleRole__detail">
+                                <div class="ec-saleRole__title">
+                                    <h3>{{ Sale.title }}</h3>
+                                </div>
+                                <div class="ec-saleRole__description">
+                                    {{ Sale.description|nl2br }}
+                                </div>
+                                {% if Sale.discount_type == 1 %}
+                                    <div class="ec-saleRole__discount">
+                                        {{ 'Discount'|trans }}: {{ Sale.discount_amount }}%
+                                    </div>
+                                {% else %}
+                                    <div class="ec-saleRole__discount">
+                                        {{ 'Discount'|trans }}: {{ Sale.discount_amount|price }}
+                                    </div>
+                                {% endif %}
+                                <div class="ec-saleRole__period">
+                                    {{ 'Period'|trans }}: {{ Sale.from_date|date_day }} - {{ Sale.to_date|date_day }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="ec-noSale">
+                    <p class="ec-noSale__message">{{ 'No sales found.'|trans }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
